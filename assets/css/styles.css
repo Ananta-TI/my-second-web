@@ -441,7 +441,7 @@ img {
 .skills__icon {
   margin-right: var(--mb-0-75);
 }
-.skills__titleS {
+.skills__title {
   font-size: var(--h3-font-size);
 }
 .skills__subtitle {
@@ -460,7 +460,7 @@ img {
   padding-right: 2.7rem;
 }
 
-.skills__title {
+.skills__titles {
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--mb-0-5);
@@ -485,10 +485,10 @@ img {
   background-color: var(--first-color);
 }
 .skills__html {
-  width: 40%;
+  width: 70%;
 }
 .skills__css {
-  width: 10%;
+  width: 50%;
 }
 .skills__js {
   width: 10%;
