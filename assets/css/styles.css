@@ -189,18 +189,27 @@ img {
 }
 .nav__logo,
 .nav__toggle {
-  color: var(--title-color);
-  font-weight: var(--font-medium);
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  color: var(--glow-color);
+  font-weight: bold;
+  text-shadow: 0 0 0.5em var(--glow-color);
+  transition: all 0.3s;
 }
 .nav__logo:hover {
-  color: var(--first-color);
+  color: var(--glow-color);
+  text-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 }
 .nav__toggle {
   font-size: 1.1rem;
   cursor: pointer;
 }
 .nav__toggle:hover {
-  color: var(--first-color);
+  color: var(--glow-color);
 }
 @media screen and (max-width: 767px) {
   .nav__menu {
@@ -282,11 +291,15 @@ img {
 
 .home__social-icon {
   font-size: 1.25rem;
-  color: #2a14b7;
+  color: var(--glow-color);
 }
 
 .home__social-icon:hover {
-  color: var(--first-color-alt);
+  --glow-color: rgb(154, 55, 247);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  color: var(--glow-color);
 }
 
 .home__blob {
@@ -346,43 +359,55 @@ img {
 }
 /*==================== BUTTONS ====================*/
 .button {
-  display: inline-block;
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  font-weight: var(--font-medium);
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.1px solid var(--glow-color);
+  padding: 1em;
+  color: var(--glow-color);
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 50px;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+  display: inline-flex; /* Menyesuaikan dengan button--flex */
+  align-items: center; /* Menyesuaikan dengan button--flex */
+}
+
+.button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
 }
 
 .button:hover {
-  background-color: var(--first-color-alt);
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 }
 
-.button__icon {
-  font-size: 1.25rem;
-  margin-left: var(--mb-0-5);
-  transition: 0.3s;
+.button:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
 }
 
-.button--flex {
-  display: inline-flex;
-  align-items: center;
-}
-
-.button--small {
-  padding: 0.5rem 1rem;
-}
-
-.button--link {
-  padding: 0;
-  background-color: transparent;
-  color: var(--first-color);
-}
-
-.button--link:hover {
-  background-color: transparent;
-  color: var(--first-color);
-}
 /*==================== ABOUT ====================*/
 .about__img {
   width: 200px;
