@@ -79,6 +79,12 @@ body.dark-theme {
   --container-color: hsl(var(--hue-color), 29%, 16%);
   --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+  --btn-color: rgb(255, 255, 255); /* Warna tombol untuk tema terang */
+  --glow-color: rgb(0, 102, 255); /* Warna glow untuk tema terang */
+  --glow-spread-color: rgba(0, 123, 255, 0.5);
+  --enhanced-glow-color: rgb(173, 216, 230);
+  --button1-bg: rgb(0, 123, 255); /* Warna hover button1 */
+  --button1-border: rgb(0, 102, 255); /* Warna border button1 */
 }
 /*========== Button Dark/Light ==========*/
 .nav__btns {
@@ -96,6 +102,37 @@ body.dark-theme {
 .change-theme:hover {
   color: var(--first-color);
 }
+
+.button1 {
+  border: 1px solid var(--button1-border);
+  background: transparent;
+  color: var(--title-color); /* Warna teks */
+}
+
+.button1:hover {
+  background: var(--button1-bg); /* Warna hover */
+  box-shadow: 0 0 30px 5px var(--button1-bg); /* Warna efek cahaya */
+}
+.button {
+  --glow-color: var(--glow-color); /* Gunakan variabel tema */
+  --glow-spread-color: var(--glow-spread-color);
+  --btn-color: var(--btn-color);
+
+  color: var(--glow-color);
+  background-color: var(--btn-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+.button:hover {
+  color: var(--btn-color); /* Tukar warna teks saat hover */
+  background-color: var(--glow-color); /* Tukar warna background */
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
 
 /*==================== BASE ====================*/
 * {
@@ -157,6 +194,178 @@ img {
 .section__subtitle {
   text-align: center;
 }
+/* ================hideen================== */
+/* styles.css */
+.hidden {
+  opacity: 0;
+  transform: translateY(50px); /* Default transform */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Variasi Animasi */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 1s ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 1s ease forwards;
+}
+
+.slide-in-top {
+  animation: slideInTop 1s ease forwards;
+}
+
+.slide-in-bottom {
+  animation: slideInBottom 1s ease forwards;
+}
+
+.zoom-in {
+  animation: zoomIn 1s ease forwards;
+}
+
+.zoom-out {
+  animation: zoomOut 1s ease forwards;
+}
+
+.flip-in-x {
+  animation: flipInX 1s ease forwards;
+}
+
+.flip-in-y {
+  animation: flipInY 1s ease forwards;
+}
+
+.rotate-in {
+  animation: rotateIn 1s ease forwards;
+}
+
+.skew-in {
+  animation: skewIn 1s ease forwards;
+}
+
+/* Animasi Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flipInX {
+  from {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+
+@keyframes flipInY {
+  from {
+    opacity: 0;
+    transform: rotateY(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0);
+  }
+}
+
+@keyframes skewIn {
+  from {
+    opacity: 0;
+    transform: skewX(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: skewX(0);
+  }
+}
 
 /*==================== LAYOUT ====================*/
 .container {
@@ -186,7 +395,11 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(10px); /* Efek blur */
+  -webkit-backdrop-filter: blur(10px); /* Blur untuk browser berbasis Webkit */
+ 
 }
+
 .nav__logo,
 .nav__toggle {
   --glow-color: rgb(217, 176, 255);
@@ -358,6 +571,83 @@ img {
   font-size: 1.25rem;
 }
 /*==================== BUTTONS ====================*/
+
+.button1 {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: 1px solid rgb(132, 0, 255);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.button1:hover {
+  background: rgb(140, 16, 255);
+  box-shadow: 0 0 30px 5px rgba(130, 0, 236, 0.815);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.button1:hover::before {
+  -webkit-animation: sh02 0.5s 0s linear;
+  -moz-animation: sh02 0.5s 0s linear;
+  animation: sh02 0.5s 0s linear;
+}
+
+.button1::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 26%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #ae00ff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.button1:active {
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+
+
+
+
 .button {
   --glow-color: rgb(217, 176, 255);
   --glow-spread-color: rgba(191, 123, 255, 0.781);
@@ -636,7 +926,7 @@ img {
 
 .services__content {
   position: relative;
-  background-color: var(--container-color);
+  /* background-color: var(--first-color-second); */
   padding: 3.5rem 0.5rem 1.25rem 1.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);

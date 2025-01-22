@@ -181,3 +181,45 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
+
+
+// ===================hidden ========================
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+  const hiddenElements = document.querySelectorAll(".hidden");
+  
+  // Tambahkan lebih banyak animasi ke array ini
+  const animations = [
+    "fade-in",
+    "slide-in-left",
+    "slide-in-right",
+    "slide-in-top",
+    "slide-in-bottom",
+    "zoom-in",
+    "zoom-out",
+    "flip-in-x",
+    "flip-in-y",
+    // "rotate-in",
+    "skew-in"
+  ];
+
+  window.addEventListener("scroll", () => {
+    const windowHeight = window.innerHeight;
+
+    hiddenElements.forEach((el) => {
+      const elementTop = el.getBoundingClientRect().top;
+      const elementBottom = el.getBoundingClientRect().bottom;
+
+      // Jika elemen masuk viewport, tambahkan kelas animasi secara acak
+      if (elementTop < windowHeight && elementBottom > 0) {
+        if (!el.classList.contains("show")) {
+          const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+          el.classList.add("show", randomAnimation);
+        }
+      } else {
+        // Jika elemen keluar dari viewport, hapus kelas animasi
+        el.classList.remove("show", ...animations);
+      }
+    });
+  });
+});
